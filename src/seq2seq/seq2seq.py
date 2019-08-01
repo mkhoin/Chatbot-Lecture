@@ -18,9 +18,7 @@ Homepage : github.com/gusdnd852
 import tensorflow as tf
 import numpy as np
 import sys
-import matplotlib.pyplot as plt
-
-from src.util.spell_checker import fix
+import pandas as pd
 
 print(sys.version)
 print(tf.__version__)  # 1.1이상 가능
@@ -31,12 +29,15 @@ seq2seq를 위한 Data 구성
 operator사용 value값 기준 정렬
 """
 
+# train_data = pd.read_csv('ChatbotData.csv',header=None).values
+# 학습 너무 오래걸려서 아래 문장들로 대체합니다.
+
 # 질문에 따른 답변 정의
 train_data = [
     ['안녕', '만나서 반가워'],
-    ['넌누구니', '나는 AI 봇이란다.'],
-    ['피자 주문 할께', '페파로니 주문해줘'],
-    ['음료는 멀로', '콜라로 해줘']
+    ['넌 누구니', '나는 AI 봇이야.'],
+    ['피자 주문 할게', '페파로니 주문해줘'],
+    ['음료는 뭘로', '콜라로 해줘']
 ]
 
 from konlpy.tag import Okt
@@ -206,9 +207,9 @@ def predict(word):
     return decoded
 
 
-print("Q: 넌누구니")
-print("A: " + ' '.join(predict(['넌누구니', ''])))
-print("Q: 피자 주문 할께")
-print("A: " + ' '.join(predict(['피자 주문 할께', ''])))
-print("Q: 음료는 멀로")
-print("A: " + ' '.join(predict(['음료는 멀로', ''])))
+print("Q: 넌 누구니")
+print("A: " + ' '.join(predict(['넌 누구니', ''])))
+print("Q: 피자 주문 할게")
+print("A: " + ' '.join(predict(['피자 주문 할게', ''])))
+print("Q: 음료는 뭘로")
+print("A: " + ' '.join(predict(['음료는 뭘로', ''])))
